@@ -10,7 +10,6 @@ TagManager:
   - TwoX
   - Health
   - Fire
-  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -21,8 +20,8 @@ TagManager:
   - 
   - 
   - background
-  - player
-  - forground
+  - 
+  - 
   - 
   - 
   - 
@@ -50,7 +49,4 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: foreground
-    uniqueID: 1272045533
     locked: 0

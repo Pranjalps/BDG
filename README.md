@@ -1,2 +1,2 @@
-# BDG
-A Game For Relaxing
+# blog-dodge-game
+ 
