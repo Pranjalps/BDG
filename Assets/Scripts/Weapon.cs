@@ -131,7 +131,46 @@ public class Weapon : MonoBehaviour
              firePointPosition = new Vector2(firePoint[1].position.x, firePoint[1].position.y);
          }*/
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition,100,whatToHit);
-        
+        if (score > 1000)
+        {
+            mousePosition.y += 2;
+            RaycastHit2D hit1 = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, whatToHit);
+            mousePosition.y -= 4;
+            RaycastHit2D hit2 = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, whatToHit);
+
+            if (hit1.collider != null)
+            {
+                Debug.DrawLine(firePointPosition, hit.point, Color.red);//change the color to red if hit 
+                                                                        //check if the object that is hit is enemy
+                if (hit1.collider.gameObject.tag == "Enemy")
+                {
+                    hit1.collider.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(damageValue);//call function of enemy script to reduce the health of enemy
+                    FindObjectOfType<GM>().ScoreValueUpdate();//update score of player
+                                        
+                        FindObjectOfType<GM>().ScoreValueUpdate();
+                        score += 2;
+                        damageValue = 20;
+                  
+                    //FindObjectOfType<EnemyHealthScript>().TakeDamage(damageValue);
+                }
+            }
+                if (hit2.collider != null)
+                {
+                    Debug.DrawLine(firePointPosition, hit.point, Color.red);//change the color to red if hit 
+                                                                            //check if the object that is hit is enemy
+                    if (hit2.collider.gameObject.tag == "Enemy")
+                    {
+                        hit2.collider.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(damageValue);//call function of enemy script to reduce the health of enemy
+                        FindObjectOfType<GM>().ScoreValueUpdate();//update score of player
+                        
+                            FindObjectOfType<GM>().ScoreValueUpdate();
+                            score += 2;
+                            damageValue = 20;
+                        
+                        //FindObjectOfType<EnemyHealthScript>().TakeDamage(damageValue);
+                    }
+                }
+        }
         //Time To Fire
         if (Time.time >= timeToSpawnEffect)
         {
@@ -139,7 +178,7 @@ public class Weapon : MonoBehaviour
             timeToSpawnEffect = Time.time + 1 / effectSpwanRate;
         }
         Debug.DrawLine(firePointPosition, mousePosition, Color.cyan);// draw line to see the hit point
-        if(hit.collider != null)
+        if(hit.collider != null )
         {
             Debug.DrawLine(firePointPosition, hit.point, Color.red);//change the color to red if hit 
             //check if the object that is hit is enemy
@@ -160,6 +199,7 @@ public class Weapon : MonoBehaviour
                 //FindObjectOfType<EnemyHealthScript>().TakeDamage(damageValue);
             }
         }
+
 
     }
     void Shoot(Touch touch)

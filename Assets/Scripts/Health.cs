@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         source.volume = vol;
         source.Play();
         Instantiate(powerUpEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject,0.4f);
+        Destroy(gameObject,0.1f);
     }
     
           
