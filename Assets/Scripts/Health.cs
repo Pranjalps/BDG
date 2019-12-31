@@ -43,7 +43,12 @@ public class Health : MonoBehaviour
         Instantiate(powerUpEffect, transform.position, Quaternion.identity);
         Destroy(gameObject,0.1f);
     }
-    
-          
+    void OnCollisionEnter2D(Collision2D obj)
+    {
+        if(obj.gameObject.tag != "player")
+        {
+            Destroy(gameObject);
+        }
+    }
     
 }

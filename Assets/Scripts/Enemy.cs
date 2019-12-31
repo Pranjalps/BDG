@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour {
     public GameObject enemyDeathEffect;
     public AudioClip blockSound;
     private AudioSource source;
+    private BoxCollider2D bo;
     //float score;
     private void Awake()
     {
         source = GetComponent<AudioSource>();
+        bo = GetComponent<BoxCollider2D>();
     }
     void Start()
     {
@@ -21,7 +23,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-            if (transform.position.y < -3f) {
+            if (transform.position.y < -5f) {
             Destroy(gameObject);
         }
 	}
@@ -29,7 +31,12 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+            bo.enabled = false;
             Die();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     void Die()

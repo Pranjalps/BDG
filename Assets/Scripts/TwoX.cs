@@ -21,11 +21,18 @@ public class TwoX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -2f)
+        if (transform.position.y < -4f)
         {
             Destroy(gameObject);
         }
         
+    }
+    void OnCollisionEnter2D(Collision2D obj)
+    {
+        if (obj.gameObject.tag != "player")
+        {
+            Destroy(gameObject);
+        }
     }
     public void Die()
     {
